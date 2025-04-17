@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पारिवारिक ट्री</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="welcome-box">
+        <p>पारिवारिक ट्री में आपका स्वागत है, यहां आप अपने परिवार का ट्री बना सकते हैं और अपनी यादें ट्री के रूप में बना के रख सकते हैं।</p>
+    </div>
+    <div class="family-name-box">
+        <p><strong>मेरा परिवार</strong> <span id="familyNameDisplay"></span> <strong>ट्री</strong></p>
+        <input type="text" id="familyNameInput" placeholder="परिवार का नाम दर्ज करें" />
+        <button id="confirmFamilyNameBtn" class="ok-btn">OK</button>
+    </div>
+    <div class="generation-section">
+        <hr class="light-line">
+        <p class="generation-label">यह प्रथम पीढ़ी है</p>
+        <div id="memberList">
+            <div class="couple-group" data-couple-id="1">
+                <div class="member-item" data-member-id="1" data-role="husband">
+                    <img id="memberPhoto1" src="" alt="Member Photo" style="display: none;" />
+                    <div class="name-container">
+                        <div class="name-display" id="memberNameDisplay1"></div>
+                        <button id="addMemberBtn1" class="plus-btn">+</button>
+                    </div>
+                    <button id="editMemberBtn1" class="edit-btn" style="display: none;">Edit</button>
+                </div>
+                <div class="member-item" data-member-id="2" data-role="wife">
+                    <img id="memberPhoto2" src="" alt="Member Photo" style="display: none;" />
+                    <div class="name-container">
+                        <div class="name-display" id="memberNameDisplay2"></div>
+                        <button id="addMemberBtn2" class="plus-btn">+</button>
+                    </div>
+                    <button id="editMemberBtn2" class="edit-btn" style="display: none;">Edit</button>
+                </div>
+            </div>
+        </div>
+        <button id="addNewCoupleBtn" class="add-new-btn">Add New Couple</button>
+    </div>
+
+    <!-- Form Modal for Husband -->
+    <div id="memberFormModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">×</span>
+            <h3>पति की जानकारी</h3>
+            <form id="memberForm">
+                <input type="hidden" id="currentMemberId" />
+                <input type="hidden" id="currentCoupleId" />
+                <label for="photoUpload">फोटो अपलोड करें:</label>
+                <input type="file" id="photoUpload" accept="image/*" /><br>
+
+                <label for="fullName">पूरा नाम:</label>
+                <input type="text" id="fullName" required /><br>
+
+                <label for="gender">लिंग:</label>
+                <select id="gender" required>
+                    <option value="" disabled selected>लिंग चुनें</option>
+                    <option value="Male">पुरुष</option>
+                    <option value="Female">महिला</option>
+                    <option value="Other">अन्य</option>
+                    <option value="Prefer Not to Say">बताना नहीं चाहते</option>
+                </select><br>
+
+                <label for="dob">जन्म तिथि:</label>
+                <input type="date" id="dob" required /><br>
+
+                <label for="isDeceased">
+                    <input type="checkbox" id="isDeceased" /> मृत्यु की स्थिति
+                </label>
+                <div id="deathDateDiv" style="display: none;">
+                    <label for="deathDate">मृत्यु तिथि:</label>
+                    <input type="date" id="deathDate" />
+                </div><br>
+
+                <label for="mobileNo">मोबाइल नंबर (वैकल्पिक):</label>
+                <input type="tel" id="mobileNo" /><br>
+
+                <label for="village">गाँव:</label>
+                <input type="text" id="village" required /><br>
+
+                <label for="khandan">खानदान:</label>
+                <input type="text" id="khandan" required /><br>
+
+                <button type="submit">सबमिट</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Form Modal for Wife -->
+    <div id="wifeFormModal" class="modal">
+        <div class="modal-content">
+            <span id="closeWifeModal" class="close">×</span>
+            <h3>पत्नी की जानकारी</h3>
+            <form id="wifeForm">
+                <input type="hidden" id="currentWifeMemberId" />
+                <input type="hidden" id="currentWifeCoupleId" />
+                <label for="wifePhotoUpload">फोटो अपलोड करें:</label>
+                <input type="file" id="wifePhotoUpload" accept="image/*" /><br>
+
+                <label for="wifeFullName">पूरा नाम:</label>
+                <input type="text" id="wifeFullName" required /><br>
+
+                <label for="wifeGender">लिंग:</label>
+                <select id="wifeGender" required>
+                    <option value="" disabled selected>लिंग चुनें</option>
+                    <option value="Male">पुरुष</option>
+                    <option value="Female">महिला</option>
+                    <option value="Other">अन्य</option>
+                    <option value="Prefer Not to Say">बताना नहीं चाहते</option>
+                </select><br>
+
+                <label for="wifeDob">जन्म तिथि:</label>
+                <input type="date" id="wifeDob" required /><br>
+
+                <label for="wifeIsDeceased">
+                    <input type="checkbox" id="wifeIsDeceased" /> मृत्यु की स्थिति
+                </label>
+                <div id="wifeDeathDateDiv" style="display: none;">
+                    <label for="wifeDeathDate">मृत्यु तिथि:</label>
+                    <input type="date" id="wifeDeathDate" />
+                </div><br>
+
+                <label for="wifeMobileNo">मोबाइल नंबर (वैकल्पिक):</label>
+                <input type="tel" id="wifeMobileNo" /><br>
+
+                <label for="wifeVillage">गाँव:</label>
+                <input type="text" id="wifeVillage" required /><br>
+
+                <label for="wifeKhandan">खानदान:</label>
+                <input type="text" id="wifeKhandan" required /><br>
+
+                <button type="submit">सबमिट</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <span id="closeDetailsModal" class="close">×</span>
+            <h3>सदस्य की जानकारी</h3>
+            <div id="memberDetails"></div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal for Add New -->
+    <div id="addTypeModal" class="modal">
+        <div class="modal-content">
+            <span id="closeAddTypeModal" class="close">×</span>
+            <h3>नया जोड़ें</h3>
+            <p>कृपया चुनें:</p>
+            <button id="addSingleBtn" class="ok-btn">Single Member</button>
+            <button id="addMarriedBtn" class="ok-btn">Married Couple</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

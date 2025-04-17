@@ -1,0 +1,282 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2C1B47, #1E3A5F, #2A6F97, #A3BFFA); /* Dark purple, teal, blue, light cyan */
+    min-height: 100vh; /* Full viewport height */
+}
+
+.welcome-box {
+    background-color: #4B0082; /* Dark purple */
+    border: 2px solid #2F004F; /* Aur thoda darker purple border */
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.welcome-box p {
+    font-size: 18px;
+    color: #FFFFFF; /* White text */
+    margin: 0;
+}
+
+.family-name-box {
+    background-color: #FFFFFF; /* White background */
+    border: 2px solid #000000; /* Black border */
+    padding: 15px;
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 10px;
+}
+
+.family-name-box p {
+    font-size: 18px;
+    color: #000000; /* Black text */
+    margin: 0 0 10px 0; /* Bottom margin for spacing */
+}
+
+.family-name-box strong {
+    font-weight: bold;
+    color: #000000; /* Black bold text */
+}
+
+.family-name-box input {
+    border: 1px solid #000000;
+    padding: 5px;
+    font-size: 16px;
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.ok-btn {
+    background-color: #28A745; /* Green */
+    color: #FFFFFF;
+    border: none;
+    padding: 4px 8px; /* Small button */
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.ok-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.generation-section {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 800px; /* Increased to accommodate horizontal couples */
+}
+
+.light-line {
+    border: 0;
+    height: 1px;
+    background: #CCCCCC; /* Light grey line */
+    margin: 10px 0;
+}
+
+.generation-label {
+    font-size: 16px;
+    color: #FFFFFF; /* White text to stand out on gradient background */
+    margin: 10px 0;
+}
+
+#memberList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px; /* Space between couple groups */
+}
+
+.couple-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px; /* Small gap between husband and wife items */
+    position: relative;
+    border: 2px solid #000000; /* Outline box for couple */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.couple-group::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 120px; /* After husband item */
+    width: 10px; /* Connector line length */
+    height: 2px;
+    background: #000000;
+}
+
+.member-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 140px; /* Fixed width */
+    height: 180px; /* Fixed height */
+    cursor: pointer; /* Clickable */
+}
+
+.member-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.name-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.name-display {
+    flex-grow: 1;
+    border: 2px solid #00CED1; /* Default cyan border */
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 14px;
+    color: #000000;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.name-display.male {
+    background-color: #90EE90; /* Green */
+}
+
+.name-display.female {
+    background-color: #FFB6C1; /* Pink */
+}
+
+.name-display.other, .name-display.prefer-not-to-say {
+    background-color: #000000; /* Black */
+    color: #FFFFFF; /* White text for contrast */
+}
+
+.name-display.mixed {
+    background: linear-gradient(to right, #90EE90, #FFB6C1); /* Green to Pink gradient */
+}
+
+.plus-btn, .edit-btn {
+    background-color: #28A745; /* Green */
+    color: #FFFFFF;
+    border: none;
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.plus-btn:hover, .edit-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.add-new-btn {
+    background-color: #28A745; /* Green */
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 15px auto;
+    display: block;
+}
+
+.add-new-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+    margin: 15% auto;
+    padding: 15px;
+    border: 1px solid #000000;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.close {
+    color: #AAAAAA;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000000;
+}
+
+form label {
+    display: block;
+    margin: 8px 0 3px;
+    font-size: 14px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="tel"],
+form input[type="file"],
+form select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+form button {
+    background-color: #28A745;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+#memberDetails img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+#memberDetails p {
+    font-size: 14px;
+    margin: 5px 0;
+}
